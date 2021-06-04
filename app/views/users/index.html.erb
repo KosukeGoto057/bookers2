@@ -36,25 +36,25 @@
         <% end %>
       </div>
       <div class="col-md-8 offset-md-1">
-        <h2>Book detal</h2>
+        <h2>Users</h2>
         <table class="table">
+          <thead>
+            <tr>
+              <th>image</th>
+              <th>name</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
           <tbody>
+            <% @users.each do |user| %>
             <tr>
               <td>
-                <%= link_to user_path(@book_show.user.id) do %>
-                  <%= attachment_image_tag @book_show.user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg" %>
-                  <%= @book_show.user.name %>
-                <% end %>
+                <%= attachment_image_tag user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg" %>
               </td>
-              <td><%= link_to "#{@book_show.title}", book_path(@book_show.id) %></td>
-              <td><%= @book_show.body %></td>
-              <td><%= link_to "Edit", edit_book_path(@book_show.id), class: 'btn btn-sm btn-success' %></td>
-              <td>
-                <% if @book_show.user == current_user %>
-                  <%= link_to "Destroy", book_path(@book_show.id), method: :delete, data: {confirm: '本当に消しますか？'}, class: 'btn btn-sm btn-danger' %>
-                <% end %>
-              </td>
+              <td><%= user.name %></td>
+              <td><%= link_to 'Show', user_path(user.id) %></td>
             </tr>
+            <% end %>
           </tbody>
         </table>
       </div>
