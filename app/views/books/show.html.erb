@@ -1,4 +1,10 @@
 <main>
+  <% if notice %>
+　　<p><%= notice %></p>
+  <% end %>
+  <% if alert %>
+   <p><%= alert %></p>
+  <% end %>
   <div class="container px-5 px-sm-0">
     <div class="row">
       <div class="col-md-3">
@@ -36,7 +42,7 @@
         <% end %>
       </div>
       <div class="col-md-8 offset-md-1">
-        <h2>Book detal</h2>
+        <h2>Book detail</h2>
         <table class="table">
           <tbody>
             <tr>
@@ -48,12 +54,14 @@
               </td>
               <td><%= link_to "#{@book_show.title}", book_path(@book_show.id) %></td>
               <td><%= @book_show.body %></td>
-              <td><%= link_to "Edit", edit_book_path(@book_show.id), class: 'btn btn-sm btn-success' %></td>
+              <% if @book_show.user == current_user %>
               <td>
-                <% if @book_show.user == current_user %>
-                  <%= link_to "Destroy", book_path(@book_show.id), method: :delete, data: {confirm: '本当に消しますか？'}, class: 'btn btn-sm btn-danger' %>
-                <% end %>
+                <%= link_to "Edit", edit_book_path(@book_show.id), class: 'btn btn-sm btn-success' %>
               </td>
+              <td>
+                <%= link_to "Destroy", book_path(@book_show.id), method: :delete, data: {confirm: '本当に消しますか？'}, class: 'btn btn-sm btn-danger' %>
+              </td>
+              <% end %>
             </tr>
           </tbody>
         </table>
