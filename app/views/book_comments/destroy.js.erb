@@ -1,0 +1,2 @@
+$('.comments_table_'+ <%= @comment.book.id %>).html("<%= j(render 'book_comments/comments', book: @comment.book, user: @comment.user)%>")
+$('.book_detail').html('<%= j(render 'books/detail', book: @comment.book) %>')
